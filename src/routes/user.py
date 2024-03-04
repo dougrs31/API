@@ -16,7 +16,7 @@ def create_opinion(opinion: Data):
                    "username": opinion.username, 
                    "comentario": opinion.comentario, 
                    "calificacion": opinion.calificacion}
-    result = conn.execute(users.insert().values(new_opinion))
+    conn.execute(users.insert().values(new_opinion))
     return conn.execute(users.select().where(users.c.id == result.lastrowid)).first()
 
 @data.get('/opiniones/{id}', response_model=Data, tags=["opiniones"])
