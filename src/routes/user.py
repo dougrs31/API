@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response, status
-from config.db import conn
-from models.user import users
-from schemas.user import Data
+from ..config.db import conn
+from ..models.user import users
+from ..schemas.user import Data
 from starlette.status import HTTP_204_NO_CONTENT
 
 data = APIRouter()
@@ -25,7 +25,7 @@ def get_opinion(id: str):
 
 @data.delete('/opiniones/{id}', status_code=status.HTTP_204_NO_CONTENT, tags=["opiniones"])
 def delete_opinion(id: str):
-    result = conn.execute(users.delete().where(users.c.id == id))
+    conn.execute(users.delete().where(users.c.id == id))
     return Response(status_code=HTTP_204_NO_CONTENT)
 
 @data.put('/opiniones/{id}', response_model=Data, tags=["opiniones"])
