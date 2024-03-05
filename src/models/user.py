@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column
 from sqlalchemy.sql.sqltypes import Integer, String
-from config.db import meta, engine
+from ..config.db import meta, engine
 
 
 users = Table("Datos", meta, 
